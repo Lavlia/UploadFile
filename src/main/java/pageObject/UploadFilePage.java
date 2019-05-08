@@ -47,6 +47,10 @@ public class UploadFilePage extends BasePage {
         getUploadFileTextboxElement().sendKeys("path/to/large/file");
     }
 
+    public void chooseNoFile() {
+        getUploadFileTextboxElement().sendKeys("");
+    }
+
     public String getMessage() {
         String message = getMessageElement().getAttribute("textContent");
         return message;

@@ -14,6 +14,7 @@ public class UploadFileSteps extends BaseUtil {
     DemoPage demoPage = new DemoPage();
     UploadFilePage uploadFilePage = new UploadFilePage();
 
+    //Start background
     @Given("^User is on Website demo.guru99.com$")
     public void userIsOnWebsiteDemoGuruCom() {
         getDriver().get("http://demo.guru99.com/");
@@ -30,15 +31,33 @@ public class UploadFileSteps extends BaseUtil {
         demoPage.selectFromDropdown();
     }
 
+    //Background stops
+
     @When("^User choose a file from his/her device$")
     public void userChooseAFileFromHisHerDevice() {
         uploadFilePage.chooseValidFile();
+    }
+
+    @When("^User choose a file from his/her device with invalid size$")
+    public void userChooseAFileFromHisHerDeviceWithInvalidSize() {
+        uploadFilePage.chooseInvalidFile();
+    }
+
+    @When("^User did not choose a file from his/her device$")
+    public void userDidNotChooseAFileFromHisHerDevice() {
+        uploadFilePage.chooseNoFile();
+
     }
 
     @And("^User checks the checkbox for “I accept terms of service”$")
     public void userChecksTheCheckboxForIAcceptTermsOfService() {
         uploadFilePage.waitForVisibility(uploadFilePage.getTermsCheckboxElement());
         uploadFilePage.clickOnElement(uploadFilePage.getTermsCheckboxElement());
+    }
+
+    @And("^User did not check the checkbox for “I accept terms of service”$")
+    public void userDidNotCheckTheCheckboxForIAcceptTermsOfService() {
+        //No action
     }
 
     @And("^User press the “Submit File” button$")
@@ -51,31 +70,13 @@ public class UploadFileSteps extends BaseUtil {
     public void userShouldSeeTheSuccessMessage() {
         uploadFilePage.waitForVisibility(uploadFilePage.getMessageElement());
         String message = uploadFilePage.getMessage();
-        System.out.println(message);
-        Assert.assertTrue(message.contains("successfully uploaded"), "The message contains 'successfully uploaded'");
-    }
-
-    @And("^User did not check the checkbox for “I accept terms of service”$")
-    public void userDidNotCheckTheCheckboxForIAcceptTermsOfService() {
-
+        Assert.assertTrue(message.contains("successfully uploaded"), "The message did not contains 'successfully uploaded'");
     }
 
     @Then("^User should not see the success message$")
     public void userShouldNotSeeTheSuccessMessage() {
         uploadFilePage.waitForVisibility(uploadFilePage.getMessageElement());
         String message = uploadFilePage.getMessage();
-        System.out.println(message);
-        Assert.assertFalse(message.contains("successfully uploaded"), "The message did not contains 'successfully uploaded'");
-    }
-
-    @When("^User did not choose a file from his/her device$")
-    public void userDidNotChooseAFileFromHisHerDevice() {
-
-    }
-
-    @When("^User choose a file from his/her device with invalid size$")
-    public void userChooseAFileFromHisHerDeviceWithInvalidSize() {
-        uploadFilePage.chooseInvalidFile();
-
+        Assert.assertFalse(message.contains("successfully uploaded"), " The message contains 'successfully uploaded'");
     }
 }

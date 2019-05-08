@@ -14,6 +14,7 @@ public class BasePage extends BaseUtil {
         BaseUtil.getDriver().manage().window().maximize();
     }
 
+    //Press on element
     public void clickOnElement(WebElement element) {
         element.click();
     }

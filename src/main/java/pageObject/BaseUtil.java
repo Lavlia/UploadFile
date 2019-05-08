@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseUtil {
-    //Protected static WebDriver driver;
     private static ThreadLocal<WebDriver> drivers = new ThreadLocal<>();
 
     //To quit the drivers and browsers at the end only.
@@ -23,16 +22,16 @@ public class BaseUtil {
     protected BaseUtil() {
     }
 
-    public static WebDriver getDriver() {
+    protected static WebDriver getDriver() {
         return drivers.get();
     }
 
-    public static void addDriver(WebDriver driver) {
+    protected static void addDriver(WebDriver driver) {
         storedDrivers.add(driver);
         drivers.set(driver);
     }
 
-    public static void removeDriver() {
+    protected static void removeDriver() {
         storedDrivers.remove(drivers.get());
         drivers.remove();
     }

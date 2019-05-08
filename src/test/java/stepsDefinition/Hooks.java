@@ -10,7 +10,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import pageObject.BaseUtil;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -18,7 +17,7 @@ import static java.nio.file.Files.copy;
 
 public class Hooks extends BaseUtil {
     @Before
-    public void initializeTest() throws IOException {
+    public void initializeTest() {
         if (getDriver() == null) {
             WebDriverManager.chromedriver().setup();
             addDriver(new ChromeDriver());
@@ -33,11 +32,11 @@ public class Hooks extends BaseUtil {
                 String timestamp = new SimpleDateFormat("yyyy_MM_dd__hh_mm_ss").format(new Date());
                 String testName = scenario.getName();
                 copy(screenshoot.toPath(),
-                        new File("F:\\repo\\FileUploadExercises\\target\\Report " + testName + " " + timestamp + " screenshot.png").toPath());
+                        new File("F:\\repo\\FileUploadExercises\\target\\Report " + testName +
+                                " " + timestamp + " screenshot.png").toPath());
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
         }
         if (getDriver() != null) {
             getDriver().close();
