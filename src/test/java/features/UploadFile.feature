@@ -1,4 +1,4 @@
-Feature: Check the functionality of the upload feature
+Feature: Check the functionality of the upload file feature
   As an user
   I want to upload a file on the site
   So that i can store it

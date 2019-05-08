@@ -11,8 +11,8 @@ import pageObject.UploadFilePage;
 
 public class UploadFileSteps extends BaseUtil {
 
-    DemoPage demoPage = new DemoPage();
-    UploadFilePage uploadFilePage = new UploadFilePage();
+    private DemoPage demoPage = new DemoPage();
+    private UploadFilePage uploadFilePage = new UploadFilePage();
 
     //Start background
     @Given("^User is on Website demo.guru99.com$")
@@ -70,13 +70,15 @@ public class UploadFileSteps extends BaseUtil {
     public void userShouldSeeTheSuccessMessage() {
         uploadFilePage.waitForVisibility(uploadFilePage.getMessageElement());
         String message = uploadFilePage.getMessage();
-        Assert.assertTrue(message.contains("successfully uploaded"), "The message did not contains 'successfully uploaded'");
+        Assert.assertTrue(message.contains("successfully uploaded"),
+                "The message did not contains 'successfully uploaded'");
     }
 
     @Then("^User should not see the success message$")
     public void userShouldNotSeeTheSuccessMessage() {
         uploadFilePage.waitForVisibility(uploadFilePage.getMessageElement());
         String message = uploadFilePage.getMessage();
-        Assert.assertFalse(message.contains("successfully uploaded"), " The message contains 'successfully uploaded'");
+        Assert.assertFalse(message.contains("successfully uploaded"),
+                " The message contains 'successfully uploaded'");
     }
 }

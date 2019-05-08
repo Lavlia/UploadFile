@@ -52,13 +52,11 @@ public class UploadFilePage extends BasePage {
     }
 
     public String getMessage() {
-        String message = getMessageElement().getAttribute("textContent");
-        return message;
+        return getMessageElement().getAttribute("textContent");
     }
 
     public String getFileName() {
-        String fileName = getUploadFileTextboxElement().getAttribute("value");
-        return fileName;
+        return getUploadFileTextboxElement().getAttribute("value");
     }
 
     @Override
